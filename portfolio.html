@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    .container {
+      max-width: 1140px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-title h4 span {
+      color: #f94d1c;
+    }
+    .port-filter ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+    .port-filter li {
+      display: inline-block;
+      margin: 0 10px;
+      cursor: pointer;
+      color: #555;
+    }
+    .scroll-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .scroll-container {
+      width: 100%;
+      max-width: 300px;
+      height: 500px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background-color: #fff;
+    }
+    .scroll-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <section class="portfolio bg-gray pt-100 pb-100" id="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h4>My <span>Portfolio</span></h4>
+        <h6>What I Do</h6>
+      </div>
+      <div class="port-filter">
+        <ul>
+          <li class="filter-item">All</li>
+          <li>Travel</li>
+          <li>Photograph</li>
+          <li>Foods</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="image-scroll bg-gray pt-100 pb-100">
+    <div class="container">
+      <div class="section-title">
+        <h4>Scroll <span>Gallery</span></h4>
+        <p>Click or hover to scroll through the images</p>
+      </div>
+      <div class="scroll-row">
+        <div id="scroll-container-1" class="scroll-container">
+          <div id="scroll-inner-1" class="scroll-inner">
+            <img src="https://i.ibb.co/x8Pt4RYG/sanaweb-site-2025-08-03-19-08-01.png" alt="Image 1" />
+          </div>
+        </div>
+
+        <div id="scroll-container-2" class="scroll-container">
+          <div id="scroll-inner-2" class="scroll-inner">
+            <img src="https://i.ibb.co/x8Pt4RYG/sanaweb-site-2025-08-03-19-08-01.png" alt="Image 2" />
+          </div>
+        </div>
+
+        <div id="scroll-container-3" class="scroll-container">
+          <div id="scroll-inner-3" class="scroll-inner">
+            <img src="https://i.ibb.co/x8Pt4RYG/sanaweb-site-2025-08-03-19-08-01.png" alt="Image 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function setupScroll(containerId, innerId) {
+      const container = document.getElementById(containerId);
+      const inner = document.getElementById(innerId);
+      let scrolled = false;
+      let hoverScrolling = false;
+
+      function scrollUp() {
+        inner.style.transition = 'transform 15s linear';
+        inner.style.transform = 'translateY(-75%)';
+      }
+
+      function scrollDown() {
+        inner.style.transition = 'transform 3s linear';
+        inner.style.transform = 'translateY(0)';
+      }
+
+      container.addEventListener('click', function () {
+        if (!scrolled) {
+          scrollUp();
+          scrolled = true;
+        } else {
+          scrollDown();
+          scrolled = false;
+        }
+      });
+
+      container.addEventListener('mouseenter', function () {
+        if (!scrolled) {
+          hoverScrolling = true;
+          scrollUp();
+        }
+      });
+
+      container.addEventListener('mouseleave', function () {
+        if (!scrolled && hoverScrolling) {
+          scrollDown();
+          hoverScrolling = false;
+        }
+      });
+    }
+
+    setupScroll('scroll-container-1', 'scroll-inner-1');
+    setupScroll('scroll-container-2', 'scroll-inner-2');
+    setupScroll('scroll-container-3', 'scroll-inner-3');
+  </script>
+</body>
+</html>
